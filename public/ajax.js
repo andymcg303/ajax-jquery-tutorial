@@ -2,13 +2,28 @@
 //     // alert("what a plonker");
 // });
 
-// $('form').submit(function(e) {
-//     e.preventDefault();
-//     let formData = $(this).serialize();
-//     $.post('/todos', formData), function(data){
-//         console.log(data);
-//     };
-// });
+$('#new-todo-form').submit(function(e){
+    e.preventDefault();
+    let toDoItem = $(this).serialize();
+    $.post('/todos', toDoItem, function(data){
+        $('#todo-list').append(
+            `
+            <li class="list-group-item">
+                <span class="lead">
+                    ${data.text}
+                </span>
+                <div class="pull-right">
+                    <a href="/todos/${data._id}/edit" class="btn btn-sm btn-warning">Edit</a>
+                    <form style="display: inline" method="POST" action="/todos/${data._id}">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+            </li>            
+            `        
+        );
+    });
+});
 
 // $('form').submit(function(e) {
 //     e.preventDefault();
@@ -24,14 +39,14 @@
 //     });
 // });
 
-$('form').submit(function(e) {
-    e.preventDefault();
-    let formAction =$(this).attr('action');
-    $.ajax({
-        url: formAction,
-        type: 'DELETE',
-        success: (data) => {
-            debugger;
-        }
-    });
-});
+// $('form').submit(function(e) {
+//     e.preventDefault();
+//     let formAction =$(this).attr('action');
+//     $.ajax({
+//         url: formAction,
+//         type: 'DELETE',
+//         success: (data) => {
+//             debugger;
+//         }
+//     });
+// });
