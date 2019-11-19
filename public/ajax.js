@@ -22,7 +22,12 @@ $('#new-todo-form').submit(function(e){
             </li>            
             `        
         );
+        $('#new-todo-form').find('.form-control').val('');
     });
+});
+
+$('#new-item-button').click(function(){
+    $('#new-todo-form').toggle();
 });
 
 // $('form').submit(function(e) {
