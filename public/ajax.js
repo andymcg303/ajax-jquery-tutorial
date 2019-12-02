@@ -1,9 +1,5 @@
 $('#new-todo-form').submit(function(e){
     e.preventDefault();
-})
-
-$('#new-todo-form').submit(function(e){
-    e.preventDefault();
     let toDoItem = $(this).serialize();
     $.post('/todos', toDoItem, function(data){
         $('#todo-list').append(
@@ -30,9 +26,6 @@ $('#todo-list').on('click', '.edit-button', function(){
     $(this).parent().siblings('.edit-item-form').toggle();
 });
 
-// $('#new-item-button').click(function(){
-//     $('#new-todo-form').toggle();
-// });
 
 // $('form').submit(function(e) {
 //     e.preventDefault();
